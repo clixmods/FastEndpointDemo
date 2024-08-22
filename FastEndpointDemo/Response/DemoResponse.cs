@@ -2,5 +2,5 @@ namespace FastEndpointDemo.Response;
 
 public class DemoResponse
 {
-    public string ACoolMessage { get; set; }
+    public string SuperMessage { get; set; }
 }

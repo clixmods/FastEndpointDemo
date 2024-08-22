@@ -11,7 +11,7 @@ public class DemoEndpoint : Endpoint<DemoRequest,DemoResponse>
 
     public override void Configure()
     {
-        Get("demo/{giveMeImageURL}");
+        Get("demo/{superBoolean}");
         
         // Require to bypass the authentication
         AllowAnonymous();
@@ -19,7 +19,7 @@ public class DemoEndpoint : Endpoint<DemoRequest,DemoResponse>
 
     public override async Task HandleAsync(DemoRequest req, CancellationToken ct)
     {
-        if (req.GiveMeImageURL)
+        if (req.SuperBoolean)
         {
             FileInfo fileInfo = new FileInfo(ImageUrl);
             
@@ -27,7 +27,7 @@ public class DemoEndpoint : Endpoint<DemoRequest,DemoResponse>
             
             await SendAsync(new DemoResponse()
                 {
-                    ACoolMessage = "Here is the image URL"
+                    SuperMessage = "Here is the image URL"
                 }, 
                 StatusCodes.Status200OK,
                 ct);
@@ -36,7 +36,7 @@ public class DemoEndpoint : Endpoint<DemoRequest,DemoResponse>
         {
             await SendAsync(new DemoResponse()
                 {
-                    ACoolMessage = "No image sadly is the image URL"
+                    SuperMessage = "No image provided."
                 }, 
                 StatusCodes.Status200OK,
                 ct);
